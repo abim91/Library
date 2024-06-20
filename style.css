@@ -1,0 +1,30 @@
+html,body{
+   
+    height: 100%;
+    width:100%;
+    margin:0;
+}
+
+.main-content{
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+    height: 100%;
+    .header{
+        border-style: solid;
+        border-color: black;
+        
+    }
+
+    #bookshelf{
+        border-style: solid;
+        border-color: red;
+    }
+}
+
+.new-div{
+    border-style: solid;
+    border-color: black;
+    width: fit-content;
+    padding: 10px;
+    margin: 10px;
+}
