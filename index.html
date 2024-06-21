@@ -9,14 +9,40 @@
 </head>
 <body>
     <main class = "main-content">
-        <header class = "header"> The Library</header>
+        <header class = "header"> The Library
+            <button onclick="showDialog()">Add</button>
+            
+        </header>
         <div id = "bookshelf">
             
+        <dialog id="open-dialog">
+            <form>
+                <label for="title" name="title">Title:</label>
+                <input type="text" id="title" ><br>
+                
+                <label for="authorName" >Author:</label>
+                <input type="text" id="authorName" name = "authorName" ><br>
+                
+                <label for="pageCount">Page Count:</label>
+                <input type="number" id="pageCount" name ="pageCount" value="Page Count:"><br>
+                
+                <p>Status</p>
+                <input type="radio" id="status" name="status" value="Reading Currently"/>
+                <label for="status" >Reading Currently</label>
 
+                <input type="radio" id="status" name = "status" value = "Have Not Started">
+                <label for = "status" name = "status">Have Not Started</label>
+               
+                <button type="submit">Submit</button>
+                <button type="reset" onclick = "closeDialog()">Close</button>
 
+            </form>
+            
+
+        </dialog>
 
         </div>
     </main>
-    
+   
 </body>
 </html>

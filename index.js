@@ -19,6 +19,7 @@ const reader6 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 200, "not re
 
 
 function addBookToLibrary() {
+
     myLibrary.push(reader);
     myLibrary.push(reader2);
     myLibrary.push(reader3);
@@ -36,11 +37,7 @@ function traverseLibrary(){
 }
 
 function createCard(card){
-   /* const newCard = document.createElement("div");
-    const newContent = document.createTextNode("Hi there and greetings!");
-    newCard.appendChild(newContent);
-    //newCard.appendChild(bookInfo.info());
-    document.body.insertBefore(newContent,null);*/
+   
 
     const newDiv = document.createElement("div");
     newDiv.classList.add("new-div");
@@ -51,9 +48,19 @@ function createCard(card){
 
 
     //put the new bookshelf
-    const bookshelf = document.getElementById("bookshelf");
+    const bookshelf = document.getElementById("bookshelf");// to reference bookself 
     bookshelf.appendChild(newDiv);
 
 }
+
+
 addBookToLibrary() ;
 traverseLibrary();
+
+const dialog = document.getElementById("open-dialog");
+function showDialog(){
+    dialog.show();
+}
+function closeDialog(){
+    dialog.close();
+}

@@ -18,13 +18,34 @@ html,body{
     #bookshelf{
         border-style: solid;
         border-color: red;
+        display: grid;
+       
+        grid-template: 1fr 1fr 1fr/ 1fr 1fr 1fr;
+        
     }
 }
 
 .new-div{
     border-style: solid;
     border-color: black;
-    width: fit-content;
+   
     padding: 10px;
     margin: 10px;
+
+    
+    
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    input[type = text] {
+        padding: 8px 0px 8px 0px;
+        width: 100%;
+    }
+    input[type = number]{
+        padding: 8px 0px 8px 0px;
+        width: 100%;
+    }
 }
