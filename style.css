@@ -5,15 +5,31 @@ html,body{
     margin:0;
 }
 
-.main-content{
-    display: grid;
-    grid-template-rows: 1fr 5fr;
-    height: 100%;
-    .header{
-        border-style: solid;
-        border-color: black;
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    #addToLibraryBTN{
+        width: 10%;
+        height: 30%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-style: none;
+        background-color: rgb(46, 218, 46);
+        border-radius: 5%;
         
     }
+}
+.header{
+    border-style: solid;
+    border-color: black;
+    
+}
+.main-content{
+   
+    
+    
 
     #bookshelf{
         border-style: solid;
