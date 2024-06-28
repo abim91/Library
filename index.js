@@ -100,14 +100,14 @@ function displayBook(card){
     var a1 = card.status === "Completed" ? "checked": "";
     
     cardBook.innerHTML = `
-                        <a href="#" class="close-button">&times;</a>
+                        <a href="#" class="close-button ${card.title}" id = "clsBtn">&times;</a>
                         <p><strong>Title: </strong> ${card.title}</p> 
                         <p><strong>Author: </strong> ${card.author}</p> 
                         <p><strong>Pages: </strong> ${card.pageCount}</p> 
                         <p><strong>Status:</strong> ${card.status}</p>   
                        <div class = "status-switch" > 
                             <label class="switch">
-                            <input name="changeProgress" type="checkbox" ${a1}/> 
+                            <input name="changeProgress" type="checkbox" class = "changeProgress" ${a1}/> 
                             </label>     
                         </div> 
     `;
@@ -120,10 +120,56 @@ function displayBook(card){
 
 }
 
+var deleteCardBtn;
 
-var updateStatus = document.getElementsByClassName("checkbox");
+document.addEventListener("click", function(e){
+    const target = e.target.closest("#clsBtn"); // Or any other selector.
   
-for(var j = 0; j < updateStatus.length; j++){
+    if(target){
+        for(let i = myLibrary.length - 1; i >= 0; i--){
+            
+            if(e.target.classList.contains(myLibrary[i].title)){
+                myLibrary.splice(i,1);
+                traverseLibrary();
+            }
+        }
+        console.log(e.target.classList+" was clicked");
+      // Do something with `target`.
+    }
+  });
+
+
+// in-progress code, 
+document.addEventListener("click", function(e){
+    const target = e.target.closest(".changeProgress"); // Or any other selector.
+    
+    if(target){
+        console.log(target+" was clicekd");
+      // Do something with `target`.
+    }
+  });
+
+
+/*var updateStatus ;
+document.addEventListener("DOMContentLoaded", function() {
+    updateStatus = document.getElementsByName(".changeProgress");
+    
+    updateStatus.forEach(function(element) {
+        element.addEventListener("change", function(e) {
+            if (e.target.checked) {
+                console.log("Checkbox checked");
+                // Perform actions when checkbox is checked
+            } else {
+                console.log("Checkbox unchecked");
+                // Perform actions when checkbox is unchecked
+            }
+        });
+    });
+});
+
+
+
+/*for(var j = 0; j < updateStatus.length; j++){
 
     updateStatus[j].addEventListener('click', (e) =>{
     //e.preventDefault();
@@ -143,8 +189,8 @@ for(var j = 0; j < updateStatus.length; j++){
             }
            
         }
-}*/
+}
     });
 
-}
+}*/
 
