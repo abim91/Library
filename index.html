@@ -17,35 +17,38 @@
         <main class = "main-content">
         <div id = "bookshelf">
             
+            <dialog id="open-dialog" class = "helper">
+                <form id = "book-form">
+                    <label for="title" name="title">Title:</label>
+                    <input type="text" id="title" required><br>
+                    
+                    <label for="authorName" >Author:</label>
+                    <input type="text" id="authorName" name = "authorName" required><br>
+                    
+                    <label for="pageCount">Page Count:</label>
+                    <input type="number" id="pageCount" name ="pageCount"  required><br>
+                    <span class = "status-section">
+                    <p>Finished Reading?</p>
+                        
+                        <input type="radio" id="status1" name="status" value="Completed"/>
+                        <label for="status1" >Yes</label>
         
+                        <input type="radio" id="status2" name = "status" value = "In-Progress">
+                        <label for = "status2" name = "status">No</label>
+                        
+                    </span>
+                    <button type="submit" value = "submit">Submit</button>
+                    <button type="reset" id = "closeBox">Close</button><!--onclick = "closeDialog()"-->
+                    
+        
+                </form>
+                
+        
+            </dialog>
 
         </div>
-        <dialog id="open-dialog">
-            <form id = "book-form">
-                <label for="title" name="title">Title:</label>
-                <input type="text" id="title" required><br>
-                
-                <label for="authorName" >Author:</label>
-                <input type="text" id="authorName" name = "authorName" required><br>
-                
-                <label for="pageCount">Page Count:</label>
-                <input type="number" id="pageCount" name ="pageCount"  required><br>
-                
-                <p>Status</p>
-                <input type="radio" id="status1" name="status" value="Reading Currently"/>
-                <label for="status1" >Reading Currently</label>
-
-                <input type="radio" id="status2" name = "status" value = "Have Not Started">
-                <label for = "status2" name = "status">Have Not Started</label>
-               
-                <button type="submit" value = "submit">Submit</button>
-                <button type="reset" id = "closeBox">Close</button><!--onclick = "closeDialog()"-->
-
-            </form>
-            
-
-        </dialog>
+        
     </main>
-   
+    
 </body>
 </html>

@@ -1,14 +1,47 @@
 const myLibrary = [];
+let i = 0;
 // book’s title, author, the number of pages, and whether or not you have read the book.
 function Book(title, author, pageCount, status){
     this.title = title;
     this.author = author;
     this.pageCount = pageCount;
-    this.status = status;
+    
+    
+    var statusChosen = document.getElementsByName("status");
+    for(let i = 0; i< statusChosen.length; i++){
+        if(statusChosen[i].checked){
+            this.status = statusChosen[i].value;
+        }
+    }
+
+    var statusSwitch = document.getElementById("statusSwitchBTN");//returns arraylike collection of html elements
+   if(statusSwitch){
+    statusSwitch.addEventListener('click', (e) =>{
+        e.preventDefault();
+        console.log("clicked");
+        /*for(var j = 0; j < statusSwitch.length; j++){
+    
+            
+            for(let i = 0; i< statusChosen.length; i++){
+                if(statusChosen[i].checked){
+                    if(statusChosen[i].value === "Completed"){
+                        this.status = "In-Progress";
+                    }
+                    else if(statusChosen[i].value === "In-Progress"){
+                        this.status = "Completed";
+                    }
+                }
+               
+            }
+    }*/
+});
+   }
     this.info = function(){
         return ("Title: "+ this.title +"/n"+ " by "+ this.author+", " + this.pageCount+ " pages, "+ this.status+ ".");
      }
-}//"The Hobbit by J.R.R. Tolkien, 295 pages, not read yet"
+}
+
+//"The Hobbit by J.R.R. Tolkien, 295 pages, not read yet"
 const dialog = document.getElementById("open-dialog");
 function showDialog(){
     dialog.show();
@@ -22,8 +55,8 @@ addBtn.addEventListener("click",showDialog);
 
 const closeBoxBTN = document.getElementById("closeBox");
 closeBoxBTN.addEventListener("click",closeDialog);
-const reader = new Book("The Hobbit", "J.R.R. Tolkien" , 295 , " not read yet");
-const reader2 = new Book("1984", "George Orwell", 328, "not read yet");
+const reader = new Book("The Hobbit", "J.R.R. Tolkien" , 295 , "no");
+const reader2 = new Book("1984", "George Orwell", 328, "yes");
 const reader3 = new Book("Pride and Prejudice", "Jane Austen", 279, "not read yet");
 const reader4 = new Book("The Catcher in the Rye", "J.D. Salinger", 224, "not read yet");
 const reader5 = new Book("Brave New World", "Aldous Huxley", 288, "not read yet");
@@ -61,12 +94,27 @@ function addBookToLibrary(Book) {
 }
 
 
-function traverseLibrary(){
+function traverseLibrary(){ 
     const bookshelf = document.getElementById("bookshelf");// to reference bookshelf 
-    bookshelf.innerHTML ="";
+    var children = bookshelf.children;
+    console.log("The bookshelf container children currently are :" +children);
+   // bookshelf.innerHTML = "";
+  //  console.log(children.classList);
+    for(let j = children.length - 1; j >= 0; j--){
+        
+        console.log( "the class list: "+ children[j].classList);
+        if(children[j].classList.contains("newBookCard")){
+            console.log(bookshelf.children[j].className + " was removed");
+            children[j].remove();
+            
+        }
+   }
+   
     for(let i = 0; i < myLibrary.length; i++){
+        console.log("The Library Currently has : "+ myLibrary );
         displayBook(myLibrary[i]);
     }
+   
     
 }
 
@@ -75,13 +123,24 @@ function displayBook(card){
    
     console.log(card);
     const cardContainer = document.createElement("div");
-    cardContainer.classList.add("new-div");
+    cardContainer.classList.add("newBookCard");//newBookCard
+    
 
     const cardBook = document.createElement("div");
-    cardBook.innerHTML = `<p><strong>Title: </strong>: ${card.title}</p> 
-                        <p><strong>Author: </strong>: ${card.author}</p> 
-                        <p><strong>Pages: </strong>: ${card.pageCount}</p> 
-                        <p><strong>status</strong>: ${card.status}</p>         
+    
+    cardBook.innerHTML = `
+
+                        <a href="#" class="close-button">&times;</a>
+                        <p><strong>Title: </strong> ${card.title}</p> 
+                        <p><strong>Author: </strong> ${card.author}</p> 
+                        <p><strong>Pages: </strong> ${card.pageCount}</p> 
+                        <p><strong>Status:</strong> ${card.status}</p>   
+                       <div class = "status-switch" > 
+                            <label class="switch">
+                            <input type="checkbox" id = "statusSwitchBTN">
+                            <span class="slider round"></span>
+                            </label>     
+                        </div> 
     `;
      
 
@@ -95,6 +154,8 @@ function displayBook(card){
     bookshelf.appendChild(cardContainer);
 
 }
+
+
 
 
 /*addBookToLibrary() ;
