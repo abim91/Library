@@ -5,7 +5,7 @@ function Book(title, author, pageCount, status){
     this.title = title;
     this.author = author;
     this.pageCount = pageCount;
-    
+    this.status = status;
     var statusChosen = document.getElementsByName("status");
     for(let i = 0; i< statusChosen.length; i++){
         if(statusChosen[i].checked){
@@ -29,10 +29,13 @@ addBtn.addEventListener("click",showDialog);
 const closeBoxBTN = document.getElementById("closeBox");
 closeBoxBTN.addEventListener("click",closeDialog);
 
-/*
-const reader = new Book("The Hobbit", "J.R.R. Tolkien" , 295 , "no");
-const reader2 = new Book("1984", "George Orwell", 328, "yes");
-const reader3 = new Book("Pride and Prejudice", "Jane Austen", 279, "not read yet");
+
+
+const reader2 = new Book("1984", "George Orwell", 328, "Completed");
+myLibrary.push(reader2);
+
+traverseLibrary();
+/*const reader3 = new Book("Pride and Prejudice", "Jane Austen", 279, "not read yet");
 const reader4 = new Book("The Catcher in the Rye", "J.D. Salinger", 224, "not read yet");
 const reader5 = new Book("Brave New World", "Aldous Huxley", 288, "not read yet");
 const reader6 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 200, "not read yet");
@@ -57,8 +60,8 @@ bookForm.addEventListener('submit',  (e) => {
 function addBookToLibrary(Book) {
  
     myLibrary.push(Book);
-    /*
-    myLibrary.push(reader);
+    
+   /* myLibrary.push(reader);
     myLibrary.push(reader2);
     myLibrary.push(reader3);
     myLibrary.push(reader4);
@@ -107,7 +110,7 @@ function displayBook(card){
                         <p><strong>Status:</strong> ${card.status}</p>   
                        <div class = "status-switch" > 
                             <label class="switch">
-                            <input name="changeProgress" type="checkbox" class = "changeProgress" ${a1}/> 
+                            <input name="changeProgress" type="checkbox" class = "changeProgress ${card.title}" ${a1}/> 
                             </label>     
                         </div> 
     `;
@@ -144,8 +147,27 @@ document.addEventListener("click", function(e){
     const target = e.target.closest(".changeProgress"); // Or any other selector.
     
     if(target){
-        console.log(target+" was clicekd");
-      // Do something with `target`.
+        for(let i =0; i < myLibrary.length; i++){
+            if(target.classList.contains(myLibrary[i].title)){
+                if(myLibrary[i].status === "In-Progress"){
+                    myLibrary[i].status = "Completed";
+                    traverseLibrary();
+                    break;// without this, the next if() will be true since now the status has been cahnge to completed
+                    
+
+                }
+                if(myLibrary[i].status === "Completed"){
+                    myLibrary[i].status = "In-Progress";
+                    traverseLibrary();
+                    break;
+                    
+
+                }
+                
+
+            }
+        }
+    
     }
   });
 
